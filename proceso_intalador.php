@@ -1,5 +1,6 @@
 <?php  
-if($_POST)
+$cn = mysqli_connect($_POST['txtservidor'],$_POST['txtUsuario'],$_POST['txtPassword']);
+if($_POST && $cn==true)
 {
    $informacion = "<?php
 	  define('DB_HOST','{$_POST['txtservidor']}');
@@ -7,24 +8,20 @@ if($_POST)
       define('DB_USER','{$_POST['txtUsuario']}');
       define('DB_PASS','{$_POST['txtPassword']}');?> ";
     file_put_contents("config.php",$informacion);
-      $cn = mysqli_connect($_POST['txtservidor'],$_POST['txtUsuario'],$_POST['txtPassword']);
-	  
-	  ?>
-<?php
-	 if($cn)
-	 {
+  
+
 	  $sql = "CREATE DATABASE IF NOT EXISTS {$_POST['txtdb']}; \n";
-	  mysqli_query($cn,$sql);
+	    mysqli_query($cn,$sql);
 	
 	  $sql1 = "use {$_POST['txtdb']}; \n";
-	  mysqli_query($cn,$sql1);
+	   mysqli_query($cn,$sql1);
 
 	 
-	 $respuesta=tabla_existe('aportaciones');
+	 $respuesta=tabla_existe(aportaciones);
 	 if($respuesta)
 	 {
 		  $sql2 = "Delete from`aportaciones`;";
-		   mysqli_query($cn,$sql2);
+		  mysqli_query($cn,$sql2);
 	 }
 	 else{
 		 
@@ -41,26 +38,30 @@ if($_POST)
              PRIMARY KEY  (`Id`),
              UNIQUE KEY `Empresa` (`Empresa`,`RNC`))
 			 ENGINE=MyISAM  DEFAULT CHARSET=armscii8 AUTO_INCREMENT=23;"; 
-      mysqli_query($cn,$sql2);
+     
+     mysqli_query($cn,$sql2);
 	}
 		
 
    echo"<script>window.location='index.php'</script>";
  }
- else{
+ else if(!$cn){
 	 
 	  echo"<script>window.location='intalador_error.php'</script>";
-	 
+ }
+ else{
+	 echo"No hubo post <a href='intalador_error.php' >Intentar de nuevo</a>";
  }
 	 
    
-}
+
 
 
  function tabla_existe($tableName)
 {
+	require_once 'conexion.php';
 	$query = "SELECT COUNT(*) FROM $tableName";
-    $result = mysqli_query($cn,$query);
+    $result = mysqli_query(conexion::obj(),$query);
 	$num_rows = mysqli_num_rows($result);
 	if($num_rows)
 	{
