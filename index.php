@@ -26,7 +26,7 @@ else if($_GET['ideliminar'])
 
 <head>
 <meta charset="utf-8">
-<title>Tarea 4 Programacion Web</title>
+<title>Tarea 3 Programacion Web</title>
 <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="bootstrap\css\bootstrap-theme.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
