@@ -1,11 +1,11 @@
 <?php
 include('Aportaciones.php');
+$aport = new Aportaciones();
 $Estado = false;
 if($_POST){
 	
 	if($_POST['txtid']=="")
 	{
-	$aport = new Aportaciones();
 	$aport->empresa=$_POST['txtnombre'];
 	$aport->rnc=$_POST['txtrnc'];
 	$aport->color=$_POST['txtcolor'];
@@ -19,7 +19,6 @@ if($_POST){
 	}
 	else {
 	
-	$aport = new Aportaciones();
 	$aport->empresa=$_POST['txtnombre'];
 	$aport->rnc=$_POST['txtrnc'];
 	$aport->color=$_POST['txtcolor'];
@@ -72,10 +71,10 @@ else
 <?php
 if($Estado==true)
 {
-  echo "<a href='inicio.php' class='btn btn-info'>Ir a Panel</a>";
+  echo "<a href='index.php' class='btn btn-info'>Ir a Panel</a>";
 }
 else{
-echo "<a style='background-color:red;' href='inicio.php'>Intentar de nuevo</a>";
+echo "<a style='background-color:red;' href='index.php'>Intentar de nuevo</a>";
 }
 ?>
 </button>

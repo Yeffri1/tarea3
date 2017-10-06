@@ -126,7 +126,7 @@ else if($_GET['ideliminar'])
 
 
 </div>
-<input type="button" onclick="window.location='inicio.php';" value="Nuevo" class="btn btn-primary botones" />
+<input type="button" onclick="window.location='index.php';" value="Nuevo" class="btn btn-primary botones" />
 <input type="submit" value="Guardar" class="btn btn-success botones">
 </form>
 
@@ -164,8 +164,8 @@ $datos = $ap->cargar_aportaciones();
 	<td>{$aportox['Tamano']}</td>
 	
 	<td>
-	<a class='btn btn-primary' href='inicio.php?idactualizar={$aportox['Id']}'>Actualizar</a>
-	<a class='btn btn-danger' href='inicio.php?ideliminar={$aportox['Id']}'>Eliminar</a>
+	<a class='btn btn-primary' href='index.php?idactualizar={$aportox['Id']}'>Actualizar</a>
+	<a class='btn btn-danger' href='index.php?ideliminar={$aportox['Id']}'>Eliminar</a>
 	</td>
 	</tr>
 	";
